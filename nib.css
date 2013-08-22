@@ -1,0 +1,92 @@
+
+/* Begin */
+
+	* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+	html, body { margin: 0; padding: 0; min-height: 100%; }
+	html {
+		height: 100%;
+		overflow-x: hidden; overflow-y: scroll;
+        background: #f0f0f0; color: #111;
+		font: normal normal normal 15px/20px Arial, Helvetica, Helmet, Freesans, sans-serif;
+	}
+	body {
+		overflow: hidden;
+	}
+	h1, h2, h3, p, ul, ol, nav, pre { margin: 0 0 20px 0; padding: 0; }
+	p { text-align: justify; }
+	ul, ol, li { padding: 0; list-style-type: none; }
+	a { text-decoration: none; }
+	a, a:visited { position: relative; display: inline-block; color: #ffd600; color: #002891; color: #111; }
+	p a, p a:visited { color: #002891; }
+	a:hover {  }
+	img { outline: none; border: none; }
+	::-moz-selection { background-color: #ffd600; color: #111; }
+	::selection { background-color: #ffd600; color: #111; }
+
+/* Pathological pixel pushing */
+	s { position: relative; top: -1px; font-size: 120%; text-decoration: none; }
+
+/* Fork me */
+
+	.fork-me { position: fixed; z-index: 99; top: 0; right: 0; width: 90px; height: 90px; background: url(fork-me.png); background-size: contain; }
+
+/* Article list */
+
+	/* tiles */
+    .articles { position: relative; margin: 0; min-height: 100%; width: 100%; border: 5px solid #f0f0f0; }
+	.tile {
+		width: 33.333%;
+		position: absolute; /*overflow: hidden;*/ z-index: 2;
+		display: table-cell; border-collapse: collapse; border-spacing: 0;
+		font-size: 0; line-height: 0;
+		background: #fff; border: 5px solid #f0f0f0;
+	}
+	.tile > article { width: 100%; height: 100%; box-shadow: 0 0 1px 1px #ccc; }
+
+	/* heading */
+	.tile .title, .tile h1, .tile h2 {
+		margin: 1px 5px 2px 5px; padding: 5px 0; border-bottom: 1px solid #ccc;
+		white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+		font-weight: bold; font-size: 12px; line-height: 20px; text-align: center;
+	}
+
+	/* description paragraph */
+	.tile .desc { font-size: 12px; line-height: 20px; color: #555; margin: 4px 5px 2px 5px; padding: 5px 15px; border-bottom: 1px solid #ccc; }
+	.tile .desc p:last-child { margin-bottom: 0; }
+
+	/* media */
+	/* in the simple feed version of this app, this only includes the single feed enclosure */
+	.tile ul { position: relative; /*overflow: hidden;*/ margin: 0; }
+	.tile li, .tile .media { background-position: 50% 50%; background-repeat: no-repeat; background-size: cover; }
+	.tile .media { 
+		height: 250px; /*border: 5px solid #fff; border-bottom-width: 1px;*/
+		background-image: url(nos.png);
+	}
+	.tile .media li {
+		display: block; position: absolute; top: -1px; width: 100%; height: 100%;
+	}
+
+	/* fold */
+	.tile .fold { margin: 4px 5px 2px 5px; padding: 5px 0; font: normal 12px/20px Arial; text-align: center; }
+	.tile .fold a {
+		background: #ddd; text-shadow: 0 1px 0 #fafafa;
+		padding: 0 5px; border-radius: 2px;
+		-webkit-transition: 200ms; -moz-transition: 200ms; -ms-transition: 200ms; -o-transition: 200ms; transition: 200ms; 
+	}
+	.tile .fold a:hover { background: #333; color: #eee; text-shadow: 0 1px 0 #000; }
+
+/* Breakpoints */
+
+	@media (min-width: 1100px) {
+		.tile { width: 24.999%; }
+	}
+	@media (max-width: 768px) {
+		.tile { width: 49.999%; }
+	}
+	@media (max-width: 600px) {
+		.tile { width: 100%; }
+	}
+	@media (max-width: 481px) {
+		.tile { width: 100%; }
+	}
+

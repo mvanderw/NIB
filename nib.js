@@ -63,7 +63,7 @@ window.NIB = (function (app) {
 			$ul.packery('layout');
 		},
 		ajax = function(yql) {
-			app.request = $.ajax({url: yql, cache: true, timeout: 10000, dataType: 'json'}).fail(fail).done(pack);
+			app.request = $.ajax({url: yql, cache: true, timeout: 10000, dataType: 'jsonp'}).fail(fail).done(pack);
 		};
 		ajax(yql);
 		return app.request;

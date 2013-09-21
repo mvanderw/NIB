@@ -19,6 +19,7 @@
 	a, a:visited { position: relative; display: inline-block; color: #ffd600; color: #002891; color: #111; }
 	p a, p a:visited { color: #002891; }
 	a:hover {  }
+	span { display: inline-block; }
 	img { outline: none; border: none; }
 	::-moz-selection { background-color: #ffd600; color: #111; }
 	::selection { background-color: #ffd600; color: #111; }
@@ -26,20 +27,80 @@
 /* Pathological pixel pushing */
 	s { position: relative; top: -1px; font-size: 120%; text-decoration: none; }
 
+/* NOS logotype */
+
+	.nos { color: #888; } .nos span { color: #cc0000; }
+
+/* Header */
+	header { cursor: default; height: 60px; text-shadow: 0 1px 0 #fff; }
+	header h1 {
+		display: inline-block; margin: 0; padding: 0; 
+		font: 900 39px/41px 'Raleway'; text-transform: uppercase; white-space: nowrap;
+		color: #333;
+	}
+	header h1 > span:last-child { font-size: 21px; color: #555; vertical-align: top; }
+	/* channels */
+	.select-channel {
+		position: absolute; top: 10px; right: 50px; /* clear the fork me ribbon */ left: 190px;
+		-webkit-transition: 500ms; -moz-transition: 500ms; transition: 500ms; 
+	}
+	.select-channel input { display: none; }
+	.select-channel label {
+		cursor: pointer;
+		position: relative;
+		margin: 0; padding: 0;
+		display: inline-block; width: 16%; height: 100%; line-height: 40px;
+		font-size: 11px; text-align: center; text-transform: uppercase; 
+		border-color: transparent;
+	}
+	.select-channel label span {
+		position: relative;
+		display: inline-block; max-width: 100%; line-height: 11px; padding: 5px;
+		white-space: nowrap; overflow: hidden; text-overflow: ellipsis; vertical-align: middle;
+		text-shadow: 0 1px 0 #eee; 
+	}
+	.select-channel label[active] span {
+		background: #ccc; box-shadow: 0 1px 0 #fff, 0 -1px 0 #aaa; border-radius: 4px;
+	}
+	.select-channel label[active]:after {
+		content: '';
+		position: absolute; top: 100%; left: 50%; margin-left: -10px; margin-top: -10px;
+		width: 0; height: 0;
+		border-top: 10px solid #ccc; border-right: 10px solid transparent; border-left: 10px solid transparent; 
+	}
+
 /* Fork me */
 
 	.fork-me { position: fixed; z-index: 99; top: 0; right: 0; width: 90px; height: 90px; background: url(fork-me.png); background-size: contain; }
 
+/* Header */
+
+	header { padding: 10px; }
+
 /* Article list */
+
+	/* */
+	section {
+		position: absolute;
+		height: 100% !important;
+		top: 60px; left: 0; right: 0;
+		-webkit-transition: 500ms; -moz-transition: 500ms; transition: 500ms; 
+		-webkit-transform: scale(0, 1); -moz-transform: scale(0, 1); -ms-transform: scale(0, 1); transform: scale(0, 1); 
+	}
+	section[vis] {
+		height: initial !important;
+		-webkit-transform: scale(1); -moz-transform: scale(1); -ms-transform: scale(1); transform: scale(1); 
+	}
 
 	/* tiles */
     .articles { position: relative; margin: 0; min-height: 100%; width: 100%; border: 5px solid #f0f0f0; }
 	.tile {
-		width: 33.333%;
+		width: 24.9%;
 		position: absolute; /*overflow: hidden;*/ z-index: 2;
 		display: table-cell; border-collapse: collapse; border-spacing: 0;
 		font-size: 0; line-height: 0;
 		background: #fff; border: 5px solid #f0f0f0;
+		-webkit-transform: scale(1); -moz-transform: scale(1); -ms-transform: scale(1); transform: scale(1); 
 	}
 	.tile > article { width: 100%; height: 100%; box-shadow: 0 0 1px 1px #ccc; }
 
@@ -59,8 +120,9 @@
 	.tile ul { position: relative; /*overflow: hidden;*/ margin: 0; }
 	.tile li, .tile .media { background-position: 50% 50%; background-repeat: no-repeat; background-size: cover; }
 	.tile .media { 
-		height: 250px; /*border: 5px solid #fff; border-bottom-width: 1px;*/
+		height: 247px; /*border: 5px solid #fff; border-bottom-width: 1px;*/
 		background-image: url(nos.png);
+		box-shadow: 0 1px 4px -2px #000;
 	}
 	.tile .media li {
 		display: block; position: absolute; top: -1px; width: 100%; height: 100%;
@@ -69,7 +131,7 @@
 	/* fold */
 	.tile .fold { margin: 4px 5px 2px 5px; padding: 5px 0; font: normal 12px/20px Arial; text-align: center; }
 	.tile .fold a {
-		background: #ddd; text-shadow: 0 1px 0 #fafafa;
+		background: #ddd; text-shadow: 0 1px 0 #f7f7f7;
 		padding: 0 5px; border-radius: 2px;
 		-webkit-transition: 200ms; -moz-transition: 200ms; -ms-transition: 200ms; -o-transition: 200ms; transition: 200ms; 
 	}
@@ -77,16 +139,18 @@
 
 /* Breakpoints */
 
-	@media (min-width: 1100px) {
-		.tile { width: 24.999%; }
-	}
+	@media (min-width: 1500px) { .tile { width: 19.9%; width: calc(20% - 1px); } }
+	@media (max-width: 1500px) { .tile { width: 24.9%; width: calc(25% - 1px); } }
+	@media (max-width: 1200px) { .tile { width: 33.3%; width: calc(33.333% - 1px); } }
 	@media (max-width: 768px) {
-		.tile { width: 49.999%; }
+		.tile { width: 49.9%; width: calc(50% - 1px); }
+		/* move the section down */
+		section { top: 100px; }
+		/* then position the nav */
+		.select-channel { top: 50px; left: 10px; right: 10px; }
+		/* path */
+		.select-channel label span { padding: 4px; }
 	}
-	@media (max-width: 600px) {
-		.tile { width: 100%; }
-	}
-	@media (max-width: 481px) {
-		.tile { width: 100%; }
-	}
+	@media (max-width: 520px) { .tile { width: 100%; } }
+	@media (max-width: 481px) { .tile { width: 100%; } }
 
